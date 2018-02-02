@@ -1,0 +1,65 @@
+{
+    "title": "Introduction to Computer Science",
+    "code": "COSC122-17SU2",
+    "course_pass": 50,
+    "exam_pass": 40,
+    "exam_weight": 50,
+    "categories": [{
+        "name": "Lab Quizzes",
+        "entries": [{
+            "name": "Lab 1 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 2 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 3 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 4 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 5 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 6.1 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 6.2 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 7.1 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }, {
+            "name": "Lab 7.2 Quiz",
+            "marks": 100,
+            "weight": 1.111
+        }]
+    }, {
+        "name": "Tests",
+        "entries": [{
+            "name": "Midterm Test",
+            "marks": 60,
+            "weight": 20
+        }]
+    }, {
+        "name": "Assignments",
+        "entries": [{
+            "name": "Assignment Part 1",
+            "marks": 40,
+            "weight": 8
+        }, {
+            "name": "Assingment Part 2",
+            "marks": 60,
+            "weight": 12
+        }]
+    }]
+}

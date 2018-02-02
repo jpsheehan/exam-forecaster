@@ -212,7 +212,7 @@ function triggerAllEvents() {
     $('input.mark-input').trigger('change');
 }
 
-$(document).ready(() => {
+function renderLayout() {
     computeManifest(manifest);
 
     var source   = $("#template").html();
@@ -227,4 +227,4 @@ $(document).ready(() => {
     populateFieldsFromStorage();
 
     triggerAllEvents();
-});
+};
