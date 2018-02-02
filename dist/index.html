@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+    <head>
+        <title>Exam Forecaster</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div id='main' class='container'></div>
+        <script id="template" type="text/x-handlebars-template">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="./">Exam Forecaster</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                {{#unless nocourse}}
+                <span class='navbar-text'>
+                    {{title}} ({{code}})
+                </span>
+                {{/unless}}
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{#if nocourse}}
+                                    Courses
+                                {{else}}
+                                    {{#if failure}}
+                                        Courses
+                                    {{else}}
+                                        Other Courses
+                                    {{/if}}
+                                {{/if}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="?course=emth119">EMTH119</a>
+                                <a class="dropdown-item" href="?course=engr102">ENGR102</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            {{#unless nocourse}}
+                <h1 class='text-center'>{{title}} ({{code}})</h1>
+
+                <h2 class='text-center'>Internal Marks:</h2>
+                {{#each categories}}
+                    <br />
+                    <div>                    
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th scope='col'>
+                                        <span class='h3'>{{name}}</span>
+                                    </th>
+                                    <th scope='col'>Marks:</th>
+                                    <th scope='col'>Max. Marks:</th>
+                                    <th scope='col'>Marks (%):</th>
+                                    <th scope='col'>Course Weight (%):</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each entries}}
+                                <tr>
+                                    <th scope='row'>{{name}}</th>
+                                    <td>
+                                        <input class='mark-input' type='number' value='0' step='0.01'
+                                        max='{{marks}}' min='0' id='category-{{../id}}-entry-{{id}}-mark' />
+                                    </td>
+                                    <td>{{marks}}</td>
+                                    <td>
+                                        <span id='category-{{../id}}-entry-{{id}}-percent'></span>
+                                    </td>
+                                    <td>{{weight}}%</td>
+                                </tr>
+                                {{/each}}
+                                <tr>
+                                    <th scope='row'>Total {{name}} Course Weight:</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <span id='category-{{id}}-weight'></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {{/each}}
+                <div>
+                    <h4 class='text-center'>
+                        Total Internal Course Marks:
+                        <span id='internal-weight'></span>
+                    </h4>
+                </div>
+                <br />
+                <br />
+                <div style='page-break-before: always;'>
+                    <h2 class='text-center'>Exam Forecast:</h2>
+                    <p class='text-center'>
+                        To pass this course you must get at least {{exam_pass}}%
+                        in the final exam and at least {{course_pass}}% overall.
+                        <br />
+                        Based on the information you've entered, you will get between a
+                        <span id='min-letter-grade'></span> and a <span id='max-letter-grade'></span>
+                        for the entire course.
+                    </p>
+                    <table class='table'>
+                        <thead>
+                            <th scope='col'>Exam Mark (%):</th>
+                            <th scope='col'>Course Mark (%):</th>
+                            <th scope='col'>Letter Grade:</th>
+                            <th scope='col'>GPA Value:</th>
+                        </thead>
+                        <tbody>
+                            {{#each segments}}
+                                <tr id='row-{{this}}'>
+                                    <td>{{this}}%</td>
+                                    <td>
+                                        <span id='total-mark-{{this}}'></span>
+                                    </td>
+                                    <td>
+                                        <span id='letter-grade-{{this}}'></span>
+                                    </td>
+                                    <td>
+                                        <span id='gpa-value-{{this}}'></span>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                {{/unless}}
+                {{#if nocourse}}
+                    <br />
+                    <div class='alert alert-warning text-center'>
+                        Select a course from the dropdown menu in the navigation bar
+                    </div>
+                {{/if}}
+                <div class='text-center small'>
+                    This software is made available under the MIT license. Download the source from <a href='https://github.com/jpsheehan/exam-forecaster'>GitHub</a>. Copyright &copy; 2018 Jesse Sheehan
+                </div>
+            </div>
+        </script>
+        <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js" integrity="sha256-+JMHsXRyeTsws/tzbIh5YHQxRdKCuNjmvNcTFtY6DLc=" crossorigin="anonymous"></script>
+        <script src='./js/loader.js' type='text/javascript'></script>
+    </body>
+</html>
