@@ -1,1 +1,3 @@
 node_modules
+dist/js/layout.js
+dist/js/loader.js
