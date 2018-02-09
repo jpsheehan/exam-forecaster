@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist/js",
-    "watch": "babel --watch src -d dist/js"
+    "watch": "babel --watch src -d dist/js",
+    "watch-courses": "node ./tools/watch-courses.js"
   },
   "author": "Jesse Sheehan",
   "license": "MIT",

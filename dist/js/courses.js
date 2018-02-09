@@ -1,0 +1,1 @@
+const courses = {"cosc122":{"title":"Introduction to Computer Science","year":2017,"semester":3,"code":"COSC122-17SU2"},"emth119":{"title":"Engineering Mathematics 1B","year":"2017","semester":3,"code":"EMTH119-17SU2"},"engr102":{"title":"Engineering Mechanics","year":2017,"semester":3,"code":"EMTH102-17SU2"}};
