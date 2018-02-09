@@ -15,7 +15,7 @@ $(document).ready(function() {
     if (matches && matches[1]) {
 
         const course = matches[1];
-        const courseUrl = `./js/courses/${course}.json`;
+        const courseUrl = `./courses/${course}.json`;
 
         // attempt to load the course manifest
         $.ajax({
@@ -28,8 +28,9 @@ $(document).ready(function() {
                 renderLayout();
 
             },
-            error: () => {
+            error: (err) => {
 
+                console.log('An error occurred while trying to load the manifest from', courseUrl, err);
                 failureToLoad({ nocourse: true });
 
             }
@@ -37,6 +38,7 @@ $(document).ready(function() {
 
     } else {
 
+        console.log('No valid course found in the url. Displaying default page.');
         failureToLoad({ nocourse: true });
         
     }
