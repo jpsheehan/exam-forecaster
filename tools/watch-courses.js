@@ -6,17 +6,17 @@ const path = require('path');
 const dirname = './dist/courses';
 const outFilename = './dist/js/courses.js';
 
-fs.watch(dirname, (eventType, filename) => {
+if (process.argv[2] === '--watch') {
+    fs.watch(dirname, (eventType, filename) => {
 
-    if (filename) {
+        if (filename) {
 
-        console.log('Change detected. Rewriting "./src/courses.js"...');
+            rewriteCoursesFile();
 
-        rewriteCoursesFile();
+        }
 
-    }
-
-});
+    });
+}
 
 function rewriteCoursesFile() {
 
@@ -50,11 +50,11 @@ function rewriteCoursesFile() {
 
             if (err) {
 
-                console.error('Could not write to output file:', err);
+                console.error(`Could not write to '${outFilename}':`, err);
 
             } else {
 
-                console.log('Updated', outFilename);
+                console.log(dirname, '->', outFilename);
             }
 
         });
