@@ -2,6 +2,9 @@ const pattern = /category-(\d+)-entry-(\d+)/;
 
 function computeManifest(manifest) {
 
+    // add courses to the manifest:
+    manifest.courses = courses;
+
     // add segments for the exam summary
     const segmentLength = Math.ceil((100 - manifest.exam_pass) / 5) + 1;
     const start = 100 - (segmentLength - 1) * 5;

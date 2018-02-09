@@ -1,7 +1,10 @@
-const matches = (/^\?course=([a-z]{4}[0-9]{3})/).exec(location.search);
+const matches = (/^\?course=([A-Za-z]{4}[0-9]{3}-[0-9]{2}[Ss][A-Za-z0-9]{2,3})/).exec(location.search);
 let manifest = null;
 
 function failureToLoad(context) {
+
+    // add courses to the context
+    context.courses = courses;
     
     var source = $("#template").html();
     var template = Handlebars.compile(source);
@@ -15,7 +18,7 @@ $(document).ready(function() {
     if (matches && matches[1]) {
 
         const course = matches[1];
-        const courseUrl = `./courses/${course}.json`;
+        const courseUrl = `./courses/${course}.json`.toLowerCase();
 
         // attempt to load the course manifest
         $.ajax({

@@ -1,9 +1,12 @@
 'use strict';
 
-var matches = /^\?course=([a-z]{4}[0-9]{3})/.exec(location.search);
+var matches = /^\?course=([A-Za-z]{4}[0-9]{3}-[0-9]{2}[Ss][A-Za-z0-9]{2,3})/.exec(location.search);
 var manifest = null;
 
 function failureToLoad(context) {
+
+    // add courses to the context
+    context.courses = courses;
 
     var source = $("#template").html();
     var template = Handlebars.compile(source);
@@ -17,7 +20,7 @@ $(document).ready(function () {
     if (matches && matches[1]) {
 
         var course = matches[1];
-        var courseUrl = './courses/' + course + '.json';
+        var courseUrl = ('./courses/' + course + '.json').toLowerCase();
 
         // attempt to load the course manifest
         $.ajax({

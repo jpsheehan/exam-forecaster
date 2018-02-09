@@ -35,8 +35,9 @@
                                 {{/if}}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="?course=emth119">EMTH119</a>
-                                <a class="dropdown-item" href="?course=engr102">ENGR102</a>
+                                {{#each courses}}
+                                    <a class="dropdown-item" href="?course={{code}}">{{code}}</a>
+                                {{/each}}
                             </div>
                         </li>
                     </ul>
