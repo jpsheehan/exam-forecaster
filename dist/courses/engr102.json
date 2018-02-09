@@ -1,6 +1,8 @@
 {
     "title": "Engineering Mechanics",
     "code": "EMTH102-17SU2",
+    "semester": 3,
+    "year": 2017,
     "course_pass": 50,
     "exam_pass": 40,
     "exam_weight": 40,

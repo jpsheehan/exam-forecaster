@@ -1,6 +1,8 @@
 {
     "title": "Engineering Mathematics 1B",
     "code": "EMTH119-17SU2",
+    "year": "2017",
+    "semester": 3,
     "course_pass": 50,
     "exam_pass": 40,
     "exam_weight": 48,
