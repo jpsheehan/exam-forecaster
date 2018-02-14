@@ -14,6 +14,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                {{#unless criticalError}}
                 {{#unless nocourse}}
                 <span class='navbar-text'>
                     {{title}} ({{code}})
@@ -42,8 +43,11 @@
                         </li>
                     </ul>
                 </div>
+
+                {{/unless}}
             </nav>
 
+            {{#unless criticalError}}
             {{#unless nocourse}}
                 <h1 class='text-center'>{{title}} ({{code}})</h1>
 
@@ -134,10 +138,17 @@
                         </tbody>
                     </table>
                 {{/unless}}
+                {{/unless}}
                 {{#if nocourse}}
                     <br />
                     <div class='alert alert-warning text-center'>
                         Select a course from the dropdown menu in the navigation bar
+                    </div>
+                {{/if}}
+                {{#if criticalError}}
+                    <br />
+                    <div class='alert alert-danger text-center'>
+                        Sorry about this. A really bad error occurred. Please try again later or send an email to <a href='mailto:jesse@sheehan.nz'>jesse@sheehan.nz</a>
                     </div>
                 {{/if}}
                 <div class='text-center small'>
