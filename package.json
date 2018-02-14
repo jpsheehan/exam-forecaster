@@ -8,7 +8,8 @@
     "build": "babel src -d dist/js",
     "build-courses": "node ./tools/watch-courses.js",
     "watch": "babel --watch src -d dist/js",
-    "watch-courses": "node ./tools/watch-courses.js --watch"
+    "watch-courses": "node ./tools/watch-courses.js --watch",
+    "build-all": "npm run build && npm run build-courses"
   },
   "author": "Jesse Sheehan",
   "license": "MIT",
