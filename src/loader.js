@@ -26,27 +26,36 @@ $(document).ready(function() {
 
             if (matches && matches[1]) {
 
-                const course = matches[1];
-                const courseUrl = `./courses/${course}.json`.toLowerCase();
+                const course = matches[1].toLowerCase();
+                const courseUrl = `./courses/${course}.json`;
+
+                if (Object.keys(courses).includes(course)) {
         
-                // attempt to load the course manifest
-                $.ajax({
-                    url: courseUrl,
-                    dataType: 'json',
-                    success: (data) => {
-        
-                        // set the manifest and render the layout
-                        manifest = data;
-                        renderLayout();
-        
-                    },
-                    error: (err) => {
-        
-                        console.log('An error occurred while trying to load the manifest from', courseUrl, err);
-                        failureToLoad({ nocourse: true });
-        
-                    }
-                });
+                    // attempt to load the course manifest
+                    $.ajax({
+                        url: courseUrl,
+                        dataType: 'json',
+                        success: (data) => {
+            
+                            // set the manifest and render the layout
+                            manifest = data;
+                            renderLayout();
+            
+                        },
+                        error: (err) => {
+            
+                            console.log('An error occurred while trying to load the manifest from', courseUrl, err);
+                            failureToLoad({ nocourse: true });
+            
+                        }
+                    });
+                    
+                } else {
+
+                    console.log('The course is not included in the courses file and is therefore invalid.', course);
+                    failureToLoad({nocourse: true });
+
+                }
         
             } else {
         
