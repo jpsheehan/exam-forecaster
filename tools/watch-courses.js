@@ -3,8 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const dirname = './dist/courses';
-const outFilename = './dist/js/courses.js';
+const dirname = './src/courses';
+const outFilename = './dist/courses/courses.json';
 
 if (process.argv[2] === '--watch') {
     fs.watch(dirname, (eventType, filename) => {
@@ -30,23 +30,44 @@ function rewriteCoursesFile() {
 
         const courses = {};
 
+        const outDirname = path.dirname(outFilename);
+
+        if (!fs.existsSync(outDirname)) {
+            console.log(`Creating directory ${outDirname}...`)
+            fs.mkdirSync(outDirname);
+        }
+
         for (let filename of filenames) {
 
-            const [course, _] = filename.split('.');
+            try {
 
-            const data = fs.readFileSync(path.join(dirname, filename));
+                const [course, _] = filename.split('.');
 
-            const json = JSON.parse(data);
+                const srcFilename = path.join(dirname, filename);
+                const destFilename = path.join(outDirname, filename);
 
-            courses[course] = {
-                title: json.title,
-                year: json.year,
-                semester: json.semester,
-                code: json.code,
+                const data = fs.readFileSync(srcFilename);
+
+                const json = JSON.parse(data);
+
+                courses[course] = {
+                    title: json.title,
+                    year: json.year,
+                    semester: json.semester,
+                    code: json.code,
+                }
+
+                // copy the file over to the dist/courses directory
+                fs.copyFileSync(srcFilename, destFilename);
+            }
+            catch (err) {
+
+                console.error(`Could not add ${filename} to ${outFilename}, reason: ${err}. Skipping...`);
+
             }
         }
 
-        fs.writeFile(outFilename, `const courses = ${JSON.stringify(courses)};`, (err) => {
+        fs.writeFile(outFilename, JSON.stringify(courses), (err) => {
 
             if (err) {
 
