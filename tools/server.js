@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
                 if (err) {
 
                     printRequest(req, 500);
-                    res.statusCode(500);
+                    res.statusCode = 500;
                     res.end();
 
                 } else {
