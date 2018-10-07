@@ -1,0 +1,45 @@
+{
+    "title": "Mechatronics Design",
+    "code": "ENMT201-18W",
+    "year": 2018,
+    "semester": 5,
+    "course_pass": 50,
+    "exam_pass": 0,
+    "exam_weight": 20,
+    "categories": [{
+        "name": "Internal Marks",
+        "entries": [{
+            "name": "Lab Reports",
+            "marks": 100,
+            "weight": 14
+        }, {
+            "name": "Test - Mechatronics",
+            "marks": 100,
+            "weight": 18
+        }, {
+            "name": "Quizzes",
+            "marks": 100,
+            "weight": 3
+        }, {
+            "name": "Mid-Year Exam",
+            "marks": 100,
+            "weight": 20
+        }, {
+            "name": "CNC Lab",
+            "marks": 100,
+            "weight": 5
+        }, {
+            "name": "CAD Tutorial",
+            "marks": 100,
+            "weight": 6
+        }, {
+            "name": "CAD/Design Assignment",
+            "marks": 100,
+            "weight": 9
+        }, {
+            "name": "Control Assignment",
+            "marks": 100,
+            "weight": 5
+        }]
+    }]
+}
