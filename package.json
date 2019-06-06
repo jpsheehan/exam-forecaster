@@ -10,13 +10,13 @@
     "watch": "babel --watch src -d dist/js",
     "watch-courses": "node ./tools/watch-courses.js --watch",
     "build-all": "npm run build && npm run build-courses",
-    "server": "npm run build-all && node ./tools/server.js"
+    "start": "npm run build-all && node ./tools/server.js"
   },
   "author": "Jesse Sheehan",
   "license": "MIT",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-minify": "^0.3.0"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5"
   }
 }
